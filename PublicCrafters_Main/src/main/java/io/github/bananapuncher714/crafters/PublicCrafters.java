@@ -72,9 +72,17 @@ public class PublicCrafters extends JavaPlugin {
 		instance = this;
 
 		new Metrics( this );
-		
-		saveResource( "README.md", true );
-		saveResource( "messages.yml", false );
+
+        File readme = new File( getDataFolder() + "/" + "README.md" );
+        File messages = new File( getDataFolder() + "/" + "messages.yml" );
+
+        if ( !readme.exists() ) {
+            saveResource( "README.md", true );
+        }
+        if ( !messages.exists() ) {
+            saveResource( "messages.yml", false );
+        }
+
 		saveDefaultConfig();
 		
 		loadConfig();
@@ -129,7 +137,7 @@ public class PublicCrafters extends JavaPlugin {
 			}
 		}
 	}
-	
+
 	private void loadData() {
 		File file = new File( getDataFolder() + "/" + "data.yml" );
 		if ( !file.exists() ) {
